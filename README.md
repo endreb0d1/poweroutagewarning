@@ -13,6 +13,7 @@ Replace the following credentials with ones relevant to you:
 
 ```
 url(first)
+your_town
 sender_email_id@gmail.com
 sender_email_password
 receiver_email_id@gmail.com
