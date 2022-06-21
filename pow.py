@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 import smtplib
 import time
 
-towns = ''
+new_towns = ''
 
-old_towns = towns
+towns = new_towns
 
 while True:
     try:
@@ -21,7 +21,7 @@ while True:
 
         table = soup.find('table')
         
-        towns = ''
+        new_towns = ''
         
         for row in table.findAll('p'):
             row = row.text
@@ -35,25 +35,25 @@ while True:
             if len(row) < 3:
                 row = ""
             
-            towns += (row + '\n')
+            new_towns += (row + '\n')
         
         # insert relevant town name    
         town = "your_town"
 
         # send email notification
-        if town in towns and towns != old_towns:
+        if town in new_towns and new_towns != towns:
             s = smtplib.SMTP('smtp.gmail.com', 587)
             s.starttls()
             s.login("sender_email_id@gmail.com", "sender_email_password")
             sender = "sender_email_id@gmail.com"
             receiver = "receiver_email_id@gmail.com"
             subject = "Obavestenje o iskljucenju struje"
-            text = towns
+            text = new_towns
             message = f"Subject: {subject}\n\n{text}"
             s.sendmail(sender, receiver, message.encode("utf-8"))
             s.quit()
             
-            old_towns = towns
+            towns = new_towns
 
     except:
         pass
