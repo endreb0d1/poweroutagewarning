@@ -31,7 +31,7 @@ while True:
             row = row.replace("\t", "")
             row = row.replace("\n", "")
             
-            # remove unnecessary numbers
+            # replace unnecessary numbers
             if len(row) < 3:
                 row = ""
             
