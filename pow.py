@@ -14,7 +14,7 @@ while True:
         r = requests.get(url)
         soup = BeautifulSoup(r.content, "html5lib")
 
-        # get affected new_towns and streets from table
+        # get affected towns and streets from table
         url = "http://www.elektrovojvodina.rs/"
         r = requests.get(url + soup.select_one("a[href*=Dana]")["href"])
         soup = BeautifulSoup(r.content, "html5lib")
