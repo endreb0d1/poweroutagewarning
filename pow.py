@@ -23,19 +23,19 @@ while True:
         
         new_towns = ""
         
-        for row in table.findAll("p"):
-            row = row.text
+        for p in table.findAll("p"):
+            p = p.text
             
             # replace unnecessary tabs and spaces
-            row = row.replace("\xa0", " ")
-            row = row.replace("\t", "")
-            row = row.replace("\n", "")
+            p = p.replace("\xa0", " ")
+            p = p.replace("\t", "")
+            p = p.replace("\n", "")
             
             # replace unnecessary numbers
-            if len(row) < 3:
-                row = ""
+            if len(p) < 3:
+                p = ""
             
-            new_towns += (row + "\n")
+            new_towns += (p + "\n")
         
         # insert relevant town name    
         town = "your_town"
