@@ -14,7 +14,7 @@ while True:
         r = requests.get(url)
         soup = BeautifulSoup(r.content, "html5lib")
 
-        # get affected towns and streets from table
+        # get affected new_towns and streets from table
         url = "http://www.elektrovojvodina.rs/"
         r = requests.get(url + soup.select_one("a[href*=Dana]")["href"])
         soup = BeautifulSoup(r.content, "html5lib")
@@ -52,7 +52,7 @@ while True:
             message = f"Subject: {subject}\n\n{text}"
             s.sendmail(sender, receiver, message.encode("utf-8"))
             s.quit()
-            
+
             towns = new_towns
 
     except:
