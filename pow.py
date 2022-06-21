@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import smtplib
 import time
 
-new_towns = ''
+new_towns = ""
 
 towns = new_towns
 
@@ -12,18 +12,18 @@ while True:
         # get last maintenance link (insert area relevant to you, eg. Subotica, Zrenjanin, Ruma...)
         url = "http://www.elektrovojvodina.rs/sl/mediji/ED-Pancevo12"
         r = requests.get(url)
-        soup = BeautifulSoup(r.content, 'html5lib')
+        soup = BeautifulSoup(r.content, "html5lib")
 
         # get affected towns and streets from table
         url = "http://www.elektrovojvodina.rs/"
-        r = requests.get(url + soup.select_one("a[href*=Dana]")['href'])
-        soup = BeautifulSoup(r.content, 'html5lib')
+        r = requests.get(url + soup.select_one("a[href*=Dana]")["href"])
+        soup = BeautifulSoup(r.content, "html5lib")
 
-        table = soup.find('table')
+        table = soup.find("table")
         
-        new_towns = ''
+        new_towns = ""
         
-        for row in table.findAll('p'):
+        for row in table.findAll("p"):
             row = row.text
             
             # replace unnecessary tabs and spaces
@@ -35,14 +35,14 @@ while True:
             if len(row) < 3:
                 row = ""
             
-            new_towns += (row + '\n')
+            new_towns += (row + "\n")
         
         # insert relevant town name    
         town = "your_town"
 
         # send email notification
         if town in new_towns and new_towns != towns:
-            s = smtplib.SMTP('smtp.gmail.com', 587)
+            s = smtplib.SMTP("smtp.gmail.com", 587)
             s.starttls()
             s.login("sender_email_id@gmail.com", "sender_email_password")
             sender = "sender_email_id@gmail.com"
